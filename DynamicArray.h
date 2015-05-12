@@ -145,25 +145,32 @@ public:
 		b = tmp;
 	}
 
-
 	unsigned int bubble()
 	{
 		unsigned int compareCounter = 0;
-
+		unsigned int lastSwap = elementsNumber;
 		bool swapped = true;
 
 		while (swapped == true)
 		{
+			unsigned int i = 0;
 			swapped = false;
-			for (unsigned int i = 0; i < elementsNumber - 1; i++)
+
+			for (i; i < lastSwap - 1; i++)
+			{
+				compareCounter++;
+				if (data[i] > data[i + 1])
 				{
-					compareCounter++;
-					if (data[i] > data[i + 1])
+					swap(data[i], data[i + 1]);
+					unsigned int j = i;
+					while (data[j] < data[j - 1])
 					{
-						swap(data[i], data[i + 1]);
-						swapped = true;
+						swap(data[j - 1], data[j]);
 					}
+					swapped = true;
 				}
+			}
+			lastSwap = i;
 		}
 		return compareCounter;
 	}
